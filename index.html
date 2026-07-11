@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio · single page</title>
+  <!-- Font Awesome (free icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+    }
+
+    body {
+      background: #f9fafc;
+      color: #1e1e2f;
+      line-height: 1.6;
+      padding: 2rem 1.5rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 2.5rem;
+      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+      padding: 2.5rem 2rem;
+      transition: all 0.2s ease;
+    }
+
+    /* header / profile */
+    .profile {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 3rem;
+      border-bottom: 2px solid #eef2f6;
+      padding-bottom: 2rem;
+    }
+
+    .avatar {
+      background: linear-gradient(145deg, #4a6cf7, #6a3de8);
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 3.6rem;
+      font-weight: 500;
+      box-shadow: 0 12px 24px -8px rgba(74, 108, 247, 0.3);
+      flex-shrink: 0;
+    }
+
+    .intro h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #0b0b1a;
+    }
+
+    .intro h1 span {
+      background: linear-gradient(135deg, #4a6cf7, #b74af7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .intro .tagline {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #4a4a6a;
+      margin-top: 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .intro .tagline i {
+      color: #4a6cf7;
+      font-size: 1rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1.2rem;
+      margin-top: 0.8rem;
+    }
+
+    .social-links a {
+      color: #2d2d44;
+      background: #f0f3f9;
+      width: 42px;
+      height: 42px;
+      border-radius: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.2s;
+      text-decoration: none;
+      font-size: 1.3rem;
+    }
+
+    .social-links a:hover {
+      background: #4a6cf7;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 16px -6px #4a6cf780;
+    }
+
+    /* grid sections */
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin: 2.5rem 0 1.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #12122a;
+    }
+
+    .section-title i {
+      color: #4a6cf7;
+      font-size: 1.8rem;
+      width: 2rem;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .card {
+      background: #fafbff;
+      border-radius: 1.8rem;
+      padding: 1.6rem 1.2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      border: 1px solid #edf2f9;
+      transition: 0.25s ease;
+      backdrop-filter: blur(2px);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: #cddbf5;
+      box-shadow: 0 18px 30px -12px rgba(74, 108, 247, 0.15);
+    }
+
+    .card i {
+      font-size: 2rem;
+      color: #4a6cf7;
+      margin-bottom: 0.8rem;
+      display: inline-block;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .card p {
+      color: #3d3d5c;
+      font-size: 0.95rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #eef3fe;
+      color: #2a3f8a;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      letter-spacing: 0.3px;
+      margin-top: 0.6rem;
+    }
+
+    /* project cards extended */
+    .project-card {
+      background: white;
+      border: 1px solid #eaf0f8;
+      border-radius: 1.8rem;
+      padding: 1.6rem 1.4rem;
+      transition: 0.2s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.01);
+    }
+
+    .project-card:hover {
+      background: #fbfdff;
+      border-color: #b7ccf0;
+      box-shadow: 0 12px 24px -14px #4a6cf740;
+    }
+
+    .project-card h4 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .project-card h4 i {
+      color: #4a6cf7;
+      font-size: 1rem;
+      opacity: 0.8;
+    }
+
+    .project-card p {
+      color: #3f3f5e;
+      font-size: 0.95rem;
+      margin: 0.4rem 0 0.3rem;
+    }
+
+    .project-tags {
+      margin-top: 0.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .project-tags span {
+      background: #eef2fa;
+      padding: 0.2rem 0.9rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #1d2a5e;
+      letter-spacing: 0.2px;
+    }
+
+    /* interactive demo box */
+    .interactive-area {
+      margin-top: 3rem;
+      background: #f2f6fe;
+      border-radius: 2rem;
+      padding: 2rem 1.8rem;
+      border: 1px solid #dce6f5;
+    }
+
+    .interactive-area h3 {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #141430;
+    }
+
+    .interactive-area h3 i {
+      color: #4a6cf7;
+    }
+
+    .counter-box {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+
+    .counter-display {
+      background: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 80px;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: #0b0b24;
+      box-shadow: inset 0 1px 4px rgba(0,0,0,0.02);
+      border: 1px solid #cddef5;
+      min-width: 120px;
+      text-align: center;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .btn {
+      background: white;
+      border: none;
+      padding: 0.7rem 1.6rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #1a1a3a;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      transition: 0.15s;
+      border: 1px solid #d6e2f5;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    .btn-primary {
+      background: #4a6cf7;
+      border: 1px solid #4a6cf7;
+      color: white;
+      box-shadow: 0 8px 16px -8px #4a6cf780;
+    }
+
+    .btn-primary:hover {
+      background: #3a5be0;
+      transform: scale(0.97);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #bacde8;
+    }
+
+    .btn-outline:hover {
+      background: #e5edfc;
+      border-color: #4a6cf7;
+    }
+
+    .btn i {
+      font-size: 1rem;
+    }
+
+    .footer-note {
+      margin-top: 3rem;
+      text-align: center;
+      color: #5f5f82;
+      font-size: 0.9rem;
+      border-top: 1px solid #eaf0f8;
+      padding-top: 2rem;
+    }
+
+    @media (max-width: 700px) {
+      .container { padding: 1.8rem 1.2rem; }
+      .profile { flex-direction: column; align-items: center; text-align: center; }
+      .social-links { justify-content: center; }
+      .counter-box { flex-direction: column; align-items: stretch; }
+      .btn-group { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- PROFILE SECTION -->
+  <div class="profile">
+    <div class="avatar">
+      <i class="fas fa-user-astronaut"></i>
+    </div>
+    <div class="intro">
+      <h1>Alex <span>Rivera</span></h1>
+      <div class="tagline">
+        <i class="fas fa-code"></i> full‑stack developer · creative problem solver
+      </div>
+      <div class="social-links">
+        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKILLS / SERVICES -->
+  <div class="section-title">
+    <i class="fas fa-cog"></i> expertise
+  </div>
+  <div class="cards-grid">
+    <div class="card">
+      <i class="fas fa-laptop-code"></i>
+      <h3>Frontend</h3>
+      <p>React, Vue, Svelte, responsive &amp; accessible UIs</p>
+      <span class="badge">5+ years</span>
+    </div>
+    <div class="card">
+      <i class="fas fa-server"></i>
+      <h3>Backend</h3>
+      <p>Node.js, Python, Go, REST &amp; GraphQL APIs</p>
+      <span class="badge">4+ years</span>
+    </div>
+    <div class="card">
+      <i class="fas fa-cloud"></i>
+      <h3>DevOps</h3>
+      <p>Docker, AWS, CI/CD, infrastructure as code</p>
+      <span class="badge">3+ years</span>
+    </div>
+    <div class="card">
+      <i class="fas fa-paint-brush"></i>
+      <h3>UI/UX</h3>
+      <p>Figma, design systems, user‑centric interfaces</p>
+      <span class="badge">collaborative</span>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="section-title">
+    <i class="fas fa-folder-open"></i> featured projects
+  </div>
+  <div class="cards-grid" style="grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));">
+    <div class="project-card">
+      <h4>finwise <i class="fas fa-arrow-right"></i></h4>
+      <p>AI‑driven personal finance dashboard with real‑time insights.</p>
+      <div class="project-tags"><span>React</span><span>D3</span><span>FastAPI</span></div>
+    </div>
+    <div class="project-card">
+      <h4>ecoSync <i class="fas fa-leaf"></i></h4>
+      <p>IoT platform for smart energy monitoring and carbon tracking.</p>
+      <div class="project-tags"><span>Vue</span><span>Node</span><span>MQTT</span></div>
+    </div>
+    <div class="project-card">
+      <h4>artspace <i class="fas fa-palette"></i></h4>
+      <p>Collaborative gallery for digital artists with live feedback.</p>
+      <div class="project-tags"><span>Svelte</span><span>WebSocket</span><span>MongoDB</span></div>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE JS DEMO: counter + message -->
+  <div class="interactive-area" id="interactive">
+    <h3><i class="fas fa-bolt"></i> interactive playground</h3>
+    <div class="counter-box">
+      <div class="counter-display" id="counterDisplay">0</div>
+      <div class="btn-group">
+        <button class="btn btn-primary" id="decrementBtn"><i class="fas fa-minus"></i> Decrease</button>
+        <button class="btn btn-primary" id="incrementBtn"><i class="fas fa-plus"></i> Increase</button>
+        <button class="btn btn-outline" id="resetBtn"><i class="fas fa-undo-alt"></i> Reset</button>
+      </div>
+    </div>
+    <p style="margin-top: 1.2rem; font-size: 0.95rem; color: #2e2e50; background: white; padding: 0.6rem 1.2rem; border-radius: 60px; display: inline-block; border: 1px solid #dce6f5;">
+      <i class="fas fa-hand-peace" style="margin-right: 0.5rem;"></i> 
+      <span id="feedbackMessage">click a button to interact</span>
+    </p>
+  </div>
+
+  <div class="footer-note">
+    <i class="fas fa-code"></i> crafted with care · 2026
+  </div>
+</div>
+
+<script>
+  (function() {
+    "use strict";
+
+    // DOM refs
+    const counterDisplay = document.getElementById('counterDisplay');
+    const feedbackSpan = document.getElementById('feedbackMessage');
+
+    const incBtn = document.getElementById('incrementBtn');
+    const decBtn = document.getElementById('decrementBtn');
+    const resetBtn = document.getElementById('resetBtn');
+
+    // state
+    let count = 0;
+    const MAX = 20;
+    const MIN = -5;
+
+    // helper: update UI + feedback
+    function updateCounter(newValue, actionMessage) {
+      // clamp
+      if (newValue > MAX) newValue = MAX;
+      if (newValue < MIN) newValue = MIN;
+
+      count = newValue;
+      counterDisplay.textContent = count;
+
+      // feedback message (optional action description)
+      if (actionMessage) {
+        feedbackSpan.textContent = actionMessage;
+      } else {
+        feedbackSpan.textContent = `current value: ${count}`;
+      }
+
+      // extra visual hint when near limits
+      if (count === MAX) {
+        feedbackSpan.textContent = `🎯 max reached (${MAX})`;
+      } else if (count === MIN) {
+        feedbackSpan.textContent = `🧊 min reached (${MIN})`;
+      }
+    }
+
+    // event handlers
+    function handleIncrement() {
+      if (count >= MAX) {
+        feedbackSpan.textContent = `⛔ already at max (${MAX})`;
+        return;
+      }
+      const newVal = count + 1;
+      updateCounter(newVal, `+1 → ${newVal}`);
+    }
+
+    function handleDecrement() {
+      if (count <= MIN) {
+        feedbackSpan.textContent = `⛔ already at min (${MIN})`;
+        return;
+      }
+      const newVal = count - 1;
+      updateCounter(newVal, `−1 → ${newVal}`);
+    }
+
+    function handleReset() {
+      updateCounter(0, '↺ reset to 0');
+    }
+
+    // attach events
+    incBtn.addEventListener('click', handleIncrement);
+    decBtn.addEventListener('click', handleDecrement);
+    resetBtn.addEventListener('click', handleReset);
+
+    // initial state
+    updateCounter(0, 'ready!');
+
+    // bonus: keyboard support (optional)
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowUp' || e.key === '+' || e.key === '=') {
+        e.preventDefault();
+        handleIncrement();
+      } else if (e.key === 'ArrowDown' || e.key === '-') {
+        e.preventDefault();
+        handleDecrement();
+      } else if (e.key === 'r' || e.key === 'R') {
+        e.preventDefault();
+        handleReset();
+      }
+    });
+
+    // small extra: hover effect on interactive area
+    const interactiveDiv = document.getElementById('interactive');
+    interactiveDiv.addEventListener('mouseenter', () => {
+      // subtle playful effect – just to show JS is alive
+      feedbackSpan.style.transition = '0.1s';
+    });
+
+    console.log('✨ portfolio interactive ready');
+  })();
+</script>
+</body>
+</html>
